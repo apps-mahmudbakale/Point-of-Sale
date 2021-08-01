@@ -16,10 +16,10 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Image</th>
+                    {{-- <th>Image</th>
                     <th>Barcode</th>
                     <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Quantity</th> --}}
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Updated At</th>
@@ -31,10 +31,10 @@
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
-                    <td><img src="{{ Storage::url($product->image) }}" alt="" width="100"></td>
+                   {{--  <td><img src="{{ Storage::url($product->image) }}" alt="" width="100"></td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->quantity}}</td>
+                    <td>{{$product->quantity}}</td> --}}
                     <td>
                         <span
                             class="right badge badge-{{ $product->status ? 'success' : 'danger' }}">{{$product->status ? 'Active' : 'Inactive'}}</span>

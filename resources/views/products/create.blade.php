@@ -34,7 +34,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="image">Image</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="image" id="image">
@@ -78,7 +78,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label for="status">Status</label>

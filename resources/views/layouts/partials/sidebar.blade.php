@@ -4,7 +4,7 @@
     <a href="{{route('home')}}" class="brand-link">
         <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        <span class="brand-text">{{ config('app.name') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -34,14 +34,14 @@
                         <p>Products</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
+                {{-- <li class="nav-item has-treeview">
                     <a href="{{ route('cart.index') }}" class="nav-link {{ activeSegment('cart') }}">
                         <i class="nav-icon fas fa-cart-plus"></i>
                         <p>Open POS</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('orders.index') }}" class="nav-link {{ activeSegment('orders') }}">
+                    <a href="{{-- {{ route('orders.index') }} --}}" class="nav-link {{ activeSegment('orders') }}">
                         <i class="nav-icon fas fa-cart-plus"></i>
                         <p>Orders</p>
                     </a>
@@ -50,6 +50,12 @@
                     <a href="{{ route('customers.index') }}" class="nav-link {{ activeSegment('customers') }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Customers</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="" class="nav-link {{ activeSegment('customers') }}">
+                        <i class="nav-icon fas fa-shuttle-van"></i>
+                        <p>Vendors</p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview">

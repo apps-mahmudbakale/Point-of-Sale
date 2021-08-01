@@ -9,10 +9,10 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'image',
-        'barcode',
-        'price',
-        'quantity',
+        // 'image',
+        // 'barcode',
+        // 'price',
+        // 'quantity',
         'status'
     ];
 }

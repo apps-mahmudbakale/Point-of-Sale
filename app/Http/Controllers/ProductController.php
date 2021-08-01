@@ -47,19 +47,19 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $image_path = '';
+        // $image_path = '';
 
-        if ($request->hasFile('image')) {
-            $image_path = $request->file('image')->store('products', 'public');
-        }
+        // if ($request->hasFile('image')) {
+        //     $image_path = $request->file('image')->store('products', 'public');
+        // }
 
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $image_path,
-            'barcode' => $request->barcode,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
+            // 'image' => $image_path,
+            // 'barcode' => $request->barcode,
+            // 'price' => $request->price,
+            // 'quantity' => $request->quantity,
             'status' => $request->status
         ]);
 
@@ -102,21 +102,21 @@ class ProductController extends Controller
     {
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->barcode = $request->barcode;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
+        // $product->barcode = $request->barcode;
+        // $product->price = $request->price;
+        // $product->quantity = $request->quantity;
         $product->status = $request->status;
 
-        if ($request->hasFile('image')) {
-            // Delete old image
-            if ($product->image) {
-                Storage::delete($product->image);
-            }
-            // Store image
-            $image_path = $request->file('image')->store('products', 'public');
-            // Save to Database
-            $product->image = $image_path;
-        }
+        // if ($request->hasFile('image')) {
+        //     // Delete old image
+        //     if ($product->image) {
+        //         Storage::delete($product->image);
+        //     }
+        //     // Store image
+        //     $image_path = $request->file('image')->store('products', 'public');
+        //     // Save to Database
+        //     $product->image = $image_path;
+        // }
 
         if (!$product->save()) {
             return redirect()->back()->with('error', 'Sorry, there\'re a problem while updating product.');
@@ -132,9 +132,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if ($product->image) {
-            Storage::delete($product->image);
-        }
+        // if ($product->image) {
+        //     Storage::delete($product->image);
+        // }
         $product->delete();
 
         return response()->json([
