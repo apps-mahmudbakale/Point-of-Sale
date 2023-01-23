@@ -42,10 +42,6 @@ class UserFormRequest extends FormRequest
                 'integer',
                 'required'
             ],
-            'station_id'  => [
-                'integer',
-                'required'
-            ],
         ];
     }
 }
