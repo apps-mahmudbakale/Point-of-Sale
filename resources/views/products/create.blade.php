@@ -55,14 +55,14 @@
                                 <input type="date" name="expiry_date" class="form-control" placeholder="Expiry Date">
                             </div>
                             
-                            <div class="form-group">
+                           {{--  <div class="form-group">
                                 <label>Store</label>
                                 <select name="store_id" class="form-control">
                                     @foreach($stores as $store)
                                             <option value="{{$store->id}}">{{$store->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /.card-body -->
 
