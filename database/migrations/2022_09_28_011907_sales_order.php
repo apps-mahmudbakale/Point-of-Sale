@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('invoice');
             $table->integer('product_id');
-            $table->integer('quantity');
-            $table->integer('amount');
+            $table->integer('quantity')->default(0);
+            $table->integer('amount')->default(0);
             $table->timestamps();
         });
     }

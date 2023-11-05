@@ -117,61 +117,14 @@ class SaleController extends Controller
     }
 
 
-    public function stationProducts(Request $request)
-    {
+ 
 
-        $products = DB::table('station_products')
-            ->where('station_id', $request->station_id)
-            ->get();
-        return response()->json($products);
-    }
-
-    public function requests()
-    {
-        $requests = Requests::get();
-        return response()->json($requests);
-    }
+ 
 
 
-    public function syncProducts(Request $request)
-    {
-        // dd($request->all());
-        $products = DB::table('station_products')
-            ->updateOrInsert(
-                ['station_id' => $request->station_id, 'product_id' => $request->product_id],
-                ['quantity' => $request->quantity]
-            );
-        if ($products) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Activity successfully created.',
-            ]);
-        }
-        // return response()->json($products);
-    }
 
-    public function syncRequest(Request $request)
-    {
-        // dd($request->all());
-        $requests = DB::table('requests')
-            ->updateOrInsert(
-                ['request_ref' => $request->request_ref, 'station_id' => $request->station_id],
-                [
-                    'product_id' => $request->product_id,
-                    'user_id' => $request->user_id,
-                    'request_qty' => $request->request_qty,
-                    'approved_qty' => $request->approved_qty,
-                    'status' => $request->status
-                ]
-            );
-        if ($requests) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Activity successfully created.',
-            ]);
-        }
-        // return response()->json($products);
-    }
+
+
     /**
      * Update the specified resource in storage.
      *

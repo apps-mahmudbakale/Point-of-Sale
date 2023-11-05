@@ -50,7 +50,7 @@
     @livewireScripts
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
     <script src="{{asset('js/localbase.dev.js')}}"></script>
-    <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+    <form id="logoutform" action="{{ route('app.logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>
     <script>

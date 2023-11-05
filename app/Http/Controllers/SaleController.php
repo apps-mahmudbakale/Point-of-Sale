@@ -74,12 +74,18 @@ class SaleController extends Controller
             ->updateOrInsert(
                 ['product_id' => $data[0], 'invoice' => $data[1]],
                 [
-                    'quantity' => DB::raw('quantity + ' . $qty),
-                    'amount' => DB::raw('amount + ' . $data[2]),
+                    // 'quantity' => DB::raw('quantity + ' . $qty),
+                    // 'amount' => DB::raw('amount + ' . $data[2]),
                     'created_at' => DB::raw('now()'),
                     'updated_at' => DB::raw('now()'),
                 ]
                 );
+                DB::table('sales_order')
+                    ->where('product_id', $data[0])
+                    ->update([
+                        'quantity' => DB::raw('quantity + 1'),
+                        'amount' => DB::raw('amount + '.$data[2])
+                    ]);
 
         return redirect()->route('app.sales.create');
     }

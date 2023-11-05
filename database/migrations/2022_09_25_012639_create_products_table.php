@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('buying_price');
-            $table->integer('selling_price');
-            $table->integer('qty');
+            $table->float('buying_price');
+            $table->float('selling_price');
+            $table->integer('qty')->default(0);
             $table->date('expiry_date');
             $table->timestamps();
         });

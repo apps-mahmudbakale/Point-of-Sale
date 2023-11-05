@@ -17,9 +17,4 @@ class Product extends Model
         'expiry_date'
     ];
 
-
-    public function store()
-    {
-        return $this->belongsTo(Store::class);
-    }
 }

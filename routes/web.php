@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StationController;
@@ -69,4 +70,5 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::resource('settings', SettingsController::class)->except('store', 'update', 'edit', 'show', 'destroy');
     Route::post('settings', [SettingsController::class, 'updateStoreSettings'])->name('update.store.settings');
     Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
+    Route::post('logout', [LogoutController::class, 'perform'])->name('logout');
 });

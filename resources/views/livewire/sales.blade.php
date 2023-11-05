@@ -1,5 +1,5 @@
 <div>
-@role('admin|store')
+@role('admin')
 <x-sales :sales="$sales" />
 @else
 <x-user-sales :sales="$sales" />
