@@ -49,36 +49,13 @@
         <div class="col-sm-12">
             <form action="{{route('app.custom.report')}}" method="POST" class="row">
                 @csrf
-                <div class="col-md-3">
-                    Filter By Products
-                    <select name="product" id="" class="form-control">
-                        <option selected value="">All Products</option>
-                        @foreach ($products as $product)
-                            <option value="{{$product->id}}">{{$product->name}}</option>
-                        @endforeach
-                    </select>
+                <div class="col-md-6">
+                    From
+                    <input type="date" name="from" class="form-control" required>
                 </div>
-                {{-- <div class="col-md-3">
-                    Filter By Station
-                    <select name="station" id="" class="form-control">
-                        <option selected value="">All Stations</option>
-                        @foreach ($stations as $station)
-                        <option value="{{$station->id}}">{{$station->name}}</option>
-                        @endforeach
-                    </select>
-                </div> --}}
-                <div class="col-md-3">
-                    Filter By User
-                    <select name="user" id="" class="form-control">
-                        <option selected value="">All Users</option>
-                        @foreach($users as $user)
-                        <option value="{{$user->id}}">{{$user->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    Filter By Date
-                    <input type="date" name="date" class="form-control">
+                <div class="col-md-6">
+                    To
+                    <input type="date" name="to" class="form-control" required>
                 </div>
                 <div class="col-md-3">
                     <br>
@@ -102,7 +79,6 @@
                             <th>Quantity</th>
                             <th>Amount</th>
                             <th>Sold By</th>
-                            <th>Station</th>
                             <th>Date</th>
                         </tr>
                     </thead>
