@@ -35,9 +35,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $stores = Store::get();
 
-        return view('products.create', compact('stores'));
+        return view('products.create');
     }
 
     /**
@@ -74,7 +73,7 @@ class ProductController extends Controller
     {
         //
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

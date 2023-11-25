@@ -58,7 +58,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     Filter By Station
                     <select name="station" id="" class="form-control">
                         <option selected value="">All Stations</option>
@@ -66,7 +66,7 @@
                         <option value="{{$station->id}}">{{$station->name}}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
                 <div class="col-md-3">
                     Filter By User
                     <select name="user" id="" class="form-control">
@@ -112,10 +112,9 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$sale->invoice}}</td>
                         <td>{{$sale->product}}</td>
-                        <td>{{$sale->qty}}</td>
+                        <td>{{$sale->quantity}}</td>
                         <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sale->amount)}}</td>
                         <td>{{$sale->user}}</td>
-                        <td>{{$sale->station}}</td>
                         <td>{{\Carbon\Carbon::parse($sale->created_at)->diffForHumans()}}</td>
                         </tr>
                        @endforeach
@@ -134,7 +133,7 @@
             <!-- /.col -->
             <div class="col-lg-6">
                 <p class="lead">General Sales Made </p>
-               
+
                 <div class="table-responsive">
                     <table class="table">
                         <tr>

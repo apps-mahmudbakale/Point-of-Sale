@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Station;
 use Illuminate\Http\Request;
 use App\Classes\CustomReport;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,6 +35,7 @@ class DashboardController extends Controller
         $users = User::count();
         $products = Product::count();
         $sales = Sale::count();
+        $today_sales = Sale::where('created_at', Carbon::now())->count();
         $sales_cash = Sale::sum('amount');
         $products_cash = Product::all()->sum(function ($t) {
             return $t->selling_price * $t->qty;
@@ -43,7 +45,7 @@ class DashboardController extends Controller
             ->select(DB::raw('SUM(products.selling_price * sales.quantity) - SUM(products.buying_price * sales.quantity) as profit'))->first();
         $profit = $query->profit;
         // dd($query->profit);
-        return view('home', compact('users', 'products', 'sales', 'sales_cash', 'products_cash', 'profit'));
+        return view('home', compact('users', 'products', 'sales', 'today_sales', 'sales_cash', 'products_cash', 'profit'));
     }
 
     public function generalReport()
@@ -72,7 +74,7 @@ class DashboardController extends Controller
             ->select('sales.*', 'products.name as product', 'users.name as user')
             ->join('products', 'products.id', '=', 'sales.product_id')
             ->join('users', 'users.id', '=', 'sales.user_id')
-            ->whereRaw('Date(sales.created_at) = CURDATE()')
+            ->whereRaw('Date(sales.created_at) = CURRENT_DATE')
             ->get();
         return view('reports.endDay', compact('sales'));
     }
@@ -80,20 +82,18 @@ class DashboardController extends Controller
     public function customReportView()
     {
         $products = Product::get();
-        $stations = Station::get();
         $users = User::where('name', '!=', 'Admin')->get();
-        return view('reports.custom', compact('products', 'stations', 'users'));
+        return view('reports.custom', compact('products', 'users'));
     }
     public function customReport(Request $request, CustomReport $report)
     {
         $reports = $report->filter($request);
         $products = Product::get();
-        $stations = Station::get();
         $users = User::where('name', '!=', 'Admin')->get();
         $words = $reports['words'];
         $sales = $reports['filter'];
         $sum = $reports['sum'];
-        return view('reports.custom', compact('products', 'stations', 'users', 'sales', 'words', 'sum'));
+        return view('reports.custom', compact('products', 'users', 'sales', 'words', 'sum'));
     }
     public function showChangePasswordGet()
     {

@@ -117,12 +117,12 @@
                                       <p>End of Day Report</p>
                                   </a>
                               </li>
-                              {{-- <li class="nav-item">
+                              <li class="nav-item">
                                   <a href="{{ route('app.custom.report.view') }}" class="nav-link">
                                       <i class="fa fa-clock nav-icon"></i>
                                       <p>Custom Report</p>
                                   </a>
-                              </li> --}}
+                              </li>
                           </ul>
                       </li>
                   @endcan
