@@ -85,7 +85,7 @@
 
 <body>
     <div class="ticket" align="center" style="max-width: 1000px; width: 328px;">
-        <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/settings/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
+        <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
             alt="Logo" style="width: 100px">
         <br>
         {{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}
@@ -122,7 +122,7 @@
         </table>
         <br>
         <p class="centered">Transaction Processed By
-            {{-- <br>{{ucfirst($user->name)}} --}}
+            <br>{{ucfirst($user->name)}}
         </p>
         <p class="centered">Thanks for your purchase!
             <br> {!! app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' !!}
@@ -132,7 +132,7 @@
         </div>
     </div>
     <div class="ticket" align="center" style="max-width: 1000px; width: 328px;">
-        <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/settings/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
+        <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
             alt="Logo" style="width: 100px">
         <br>
         {{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}
@@ -168,7 +168,7 @@
         </table>
         <br>
         <p class="centered">Transaction Processed By
-            {{-- <br>{{ucfirst($user->name)}} --}}
+            <br>{{ucfirst($user->name)}}
         </p>
         <p class="centered">Thanks for your purchase!
             <br>{!! app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' !!}

@@ -58,7 +58,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-primary">
               <div class="inner">
                 <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($products_cash_selling)}}</h3>
 
