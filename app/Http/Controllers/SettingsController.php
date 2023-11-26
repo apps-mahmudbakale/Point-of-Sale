@@ -11,7 +11,7 @@ class SettingsController extends Controller
     {
         $currencies = ['&#36;','&#8361;','&#8364;', '&#8377;', '&#8358;', '&#165;'];
         $audits = \OwenIt\Auditing\Models\Audit::with('user')
-        ->orderBy('created_at', 'desc')                
+        ->orderBy('created_at', 'desc')
         ->get();
         return view('settings.index', compact('settings', 'currencies', 'audits'));
     }
@@ -25,11 +25,11 @@ class SettingsController extends Controller
 
         ]);
 
-        $logo = '';
+        $logo = $settings->store_logo;
         if ($request->hasFile('store_logo')) {
             $logo = time() . '.' . $request->store_logo->extension();
             $request->file('store_logo')->storeAs('public/store', $logo);
-            
+
         }
 
         $settings->store_name = $request->store_name;

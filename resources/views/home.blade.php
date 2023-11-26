@@ -27,7 +27,7 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           @role('admin')
-          <div class="col-lg-3 col-4">
+          <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
@@ -42,13 +42,27 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-4">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-4">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($products_cash)}}</h3>
+                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($products_cash_cost)}}</h3>
 
-                <p>Total Products Costs</p>
+                <p>Value of Products at Cost Price</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cubes"></i>
+              </div>
+              <a href="{{route('app.products.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($products_cash_selling)}}</h3>
+
+                <p>Value of Products at Selling Price</p>
               </div>
               <div class="icon">
                 <i class="fa fa-cubes"></i>
@@ -57,7 +71,21 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-4">
+          <div class="col-lg-3 col-md-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$sales}}</h3>
+
+                <p>Total Sales</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="{{route('app.sales.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
@@ -72,23 +100,9 @@
             </div>
           </div>
            <!-- ./col -->
-           <div class="col-lg-3 col-4">
+          <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{$sales}}</h3>
-
-                <p>Total Sales</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
-              </div>
-              <a href="{{route('app.sales.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-4">
-            <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-info">
               <div class="inner">
                 <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sales_cash)}}</h3>
 
@@ -100,13 +114,27 @@
               <a href="{{route('app.sales.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-3 col-4">
+          <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-warning">
               <div class="inner">
                 <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($profit)}}</h3>
 
                 <p>Total Profit in Cash</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-money-bill"></i>
+              </div>
+              <a href="{{route('app.sales.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-4">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($today_cash)}}</h3>
+
+                <p>Today Sales in Cash</p>
               </div>
               <div class="icon">
                 <i class="fa fa-money-bill"></i>

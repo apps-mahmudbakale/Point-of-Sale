@@ -40,11 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Buying Price</label>
-                                <input type="number" name="buying_price" class="form-control" placeholder="Buying Price">
+                                <input type="number" name="buying_price" id="buying" class="form-control" placeholder="Buying Price">
                             </div>
                             <div class="form-group">
                                 <label>Selling Price</label>
-                                <input type="number" name="selling_price" class="form-control" placeholder="Selling Price">
+                                <input type="number" name="selling_price" id="selling" readonly class="form-control" placeholder="Selling Price">
                             </div>
                             <div class="form-group">
                                 <label>Quantity in Stock</label>
@@ -66,6 +66,16 @@
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
+        <script>
+            var buying = document.getElementById('buying');
+            var selling = document.getElementById('selling');
+
+            buying.addEventListener('keyup', ()=>{
+                // alert(buying.value);
+                selling.value = buying.value * {{ app(App\Settings\StoreSettings::class)->sell_margin}}
+            });
+
+        </script>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

@@ -35,9 +35,13 @@ class DashboardController extends Controller
         $users = User::count();
         $products = Product::count();
         $sales = Sale::count();
-        $today_sales = Sale::where('created_at', Carbon::now())->count();
+        $today_sales = Sale::whereDate('created_at', Carbon::today())->count();
+        $today_cash = Sale::whereDate('created_at', Carbon::today())->sum('amount');
         $sales_cash = Sale::sum('amount');
-        $products_cash = Product::all()->sum(function ($t) {
+        $products_cash_cost = Product::all()->sum(function ($t) {
+            return $t->buying_price * $t->qty;
+        });
+        $products_cash_selling = Product::all()->sum(function ($t) {
             return $t->selling_price * $t->qty;
         });
         $query = DB::table('sales')
@@ -45,7 +49,7 @@ class DashboardController extends Controller
             ->select(DB::raw('SUM(products.selling_price * sales.quantity) - SUM(products.buying_price * sales.quantity) as profit'))->first();
         $profit = $query->profit;
         // dd($query->profit);
-        return view('home', compact('users', 'products', 'sales', 'today_sales', 'sales_cash', 'products_cash', 'profit'));
+        return view('home', compact('users', 'products', 'sales', 'today_sales', 'today_cash', 'sales_cash', 'products_cash_cost', 'products_cash_selling', 'profit'));
     }
 
     public function generalReport()
