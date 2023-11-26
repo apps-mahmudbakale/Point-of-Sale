@@ -125,7 +125,6 @@ class SaleController extends Controller
                 'product_id' => $order->product_id,
                 'quantity' => $order->quantity,
                 'amount' => $order->amount,
-                'station_id' => '0',
                 'user_id' => auth()->user()->id
             ]);
             $product = DB::table('products')
