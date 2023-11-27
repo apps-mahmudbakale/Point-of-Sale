@@ -29,11 +29,11 @@ class ProductsFormRequest extends FormRequest
                 'string'
             ],
             'buying_price' => [
-                'integer',
+                'decimal',
                 'required'
             ],
             'selling_price' => [
-                'integer',
+                'decimal',
                 'required'
             ],
             'qty' => [

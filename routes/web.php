@@ -46,6 +46,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::resource('stores', StoreController::class);
     Route::resource('products', ProductController::class);
     Route::get('product/import', [ProductController::class, 'importView'])->name('products.import');
+    Route::get('product/export', [ProductController::class, 'export'])->name('products.export');
     Route::post('product', [ProductController::class, 'import'])->name('import.products');
     Route::resource('requests', RequestsController::class);
     Route::post('requests/approve/{id}', [RequestsController::class, 'approve'])->name('requests.approve');
@@ -60,6 +61,8 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('sales/cancel/{invoice}', [SaleController::class, 'cancelSale']);
     Route::get('sales-print/{invoice}', [SaleController::class, 'printInvoice'])->name('sales.print');
     Route::get('generalReport', [DashboardController::class, 'generalReport'])->name('general.report');
+    Route::get('generalReportExcel', [DashboardController::class, 'exportGeneralReportExcel'])->name('general-report.export-excel');
+    Route::get('generalReportPdf', [DashboardController::class, 'exportGeneralReportPDF'])->name('general-report.export-pdf');
     Route::get('changePassword', [DashboardController::class, 'showChangePasswordGet'])->name('changePasswordGet');
     Route::post('changePassword', [DashboardController::class, 'changePasswordPost'])->name('changePasswordPost');
     // Route::get('endOfDayReport', [DashboardController::class, 'endOfDayView'])->name('endofDay.view');

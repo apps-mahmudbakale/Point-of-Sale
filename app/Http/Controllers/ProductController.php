@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\ProductsFormRequest;
@@ -59,6 +60,11 @@ class ProductController extends Controller
         return redirect()->route('app.products.index')->with('success', 'Products Imported');
     }
 
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'K7-Pharmacy-products-export'.date('d-m-Y').'.xlsx');
+    }
+
     public function importView()
     {
         return view('products.import');
@@ -83,9 +89,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $stores = Store::get();
 
-        return view('products.edit', compact('stores', 'product'));
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -95,7 +100,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductsFormRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         $product->update($request->all());
 

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
 use NumberFormatter;
 use App\Models\Product;
-use App\Models\Station;
 use Illuminate\Http\Request;
 use App\Classes\CustomReport;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Exports\GeneralReportExport;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class DashboardController extends Controller
 {
@@ -67,11 +69,28 @@ class DashboardController extends Controller
         $words = $inWords->format($sum->total);
         return view('reports.general', compact('sales', 'sum', 'words'));
     }
-    // public function endOfDayView()
-    // {
-    //     $stations = Station::get();
-    //     return view('reports.end_day_view', compact('stations'));
-    // }
+
+    public function exportGeneralReportExcel()
+    {
+        return Excel::download(new GeneralReportExport, 'K7-Pharmacy-General-Rport.xlsx');
+    }
+
+    public function exportGeneralReportPdf()
+    {
+        $sales = Sale::leftJoin('products', 'sales.product_id', '=', 'products.id')
+            ->leftJoin('users', 'sales.user_id', '=', 'users.id')
+            ->select('products.name as product', 'sales.amount', 'sales.created_at', 'sales.quantity', 'sales.invoice', 'users.name as user')
+            ->get();
+        $sum    = DB::table('sales')
+            ->selectRaw('sum(amount) as total')
+            ->first();
+        $inWords = new NumberFormatter("En", NumberFormatter::SPELLOUT);
+        $words = $inWords->format($sum->total);
+        $pdf = PDF::loadView('reports.general_report_pdf', compact('sales', 'sum', 'words'));
+        return $pdf->download('K7-Pharmacy-GeneralReport.pdf');
+
+    }
+
     public function endOfDayReport()
     {
         $sales = DB::table('sales')
