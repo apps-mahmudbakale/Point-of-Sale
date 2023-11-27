@@ -72,9 +72,9 @@
                                                 <button id="minus{{ $cart->id }}"
                                                     class='btn btn-warning text-white btn-sm delete'><i
                                                         class='fa fa-minus-circle'></i></button>
-                                                        <button id="minus{{ $cart->id }}"
-                                                            class='btn btn-danger btn-sm delete'><i
-                                                                class='fa fa-times-circle'></i></button>
+                                                <button id="minus{{ $cart->id }}"
+                                                    class='btn btn-danger btn-sm delete'><i
+                                                        class='fa fa-times-circle'></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -285,23 +285,28 @@
                 var search_keyword_value = $('#search_keyword').val();
                 // alert(search_keyword_value);
                 var dataString = 'search_keyword=' + search_keyword_value;
-                if (search_keyword_value != '') {
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ route('app.sales.search') }}",
-                        data: {
-                            search_keyword: search_keyword_value,
-                            _token: "{{ csrf_token() }}"
-                        },
-                        cache: false,
-                        success: ((html) => {
-                            $('#result').html(html).show();
+                if (search_keyword_value !== '') {
+                    const formData = new FormData();
+                    formData.append('search_keyword', search_keyword_value);
+                    formData.append('_token', "{{ csrf_token() }}");
+
+                    fetch("{{ route('app.sales.search') }}", {
+                            method: 'POST',
+                            body: formData,
+                            cache: 'no-cache',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest', // Add this header if needed
+                            },
+                        })
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('result').innerHTML = html;
+                            document.getElementById('result').style.display = 'block';
                             // console.log(html);
                         })
-
-
-
-                    });
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                        });
                 }
                 return false;
             })
