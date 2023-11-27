@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
@@ -78,3 +79,4 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
     Route::post('logout', [LogoutController::class, 'perform'])->name('logout');
 });
+URL::forceScheme('https');
