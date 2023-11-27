@@ -136,6 +136,10 @@ class DashboardController extends Controller
         $sum = $reports['sum'];
         return view('reports.custom', compact('products', 'users', 'sales', 'words', 'sum'));
     }
+    public function customReportExcel($data)
+    {
+        
+    }
     public function showChangePasswordGet()
     {
         return view('change-password');

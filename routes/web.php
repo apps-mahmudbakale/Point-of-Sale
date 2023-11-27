@@ -79,6 +79,6 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::post('settings/currency', [SettingsController::class, 'updateStoreCurrency'])->name('update.store.currency');
     Route::post('logout', [LogoutController::class, 'perform'])->name('logout');
 });
-if (env('APP_ENV') === 'production') {
+// if (env('APP_ENV') === 'production') {
     URL::forceScheme('https');
-}
+// }
