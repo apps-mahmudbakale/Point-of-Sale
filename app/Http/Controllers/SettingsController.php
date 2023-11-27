@@ -22,6 +22,7 @@ class SettingsController extends Controller
             'store_name' => 'required',
             'store_address' => 'required',
             'store_logo' => 'nullable|file|image',
+            'sell_margin' => 'required|numeric|min:0',
 
         ]);
 
@@ -35,8 +36,9 @@ class SettingsController extends Controller
         $settings->store_name = $request->store_name;
         $settings->store_logo = $logo;
         $settings->store_address = $request->store_address;
+        $settings->sell_margin = $request->sell_margin;
         $settings->save();
-        return back()->with('Store Settings Has Been Updated');
+        return redirect()->route('app.settings.index')->with('Store Settings Has Been Updated');
     }
 
     public function updateStoreCurrency(Request $request, StoreSettings $settings)
