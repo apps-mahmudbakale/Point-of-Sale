@@ -100,7 +100,7 @@
             <!-- /.col -->
             <div class="col-lg-6">
                 <p class="lead">General Sales Made </p>
-               
+
                 <div class="table-responsive">
                     <table class="table">
                         <tr>
@@ -122,7 +122,22 @@
         <!-- this row will not appear when printing -->
         <div class="row no-print">
             <div class="col-lg-12">
-                <a href="{{route('app.dashboard')}}" class="btn btn-primary pull-left"><i class="fa fa-home"></i> Go Home</a>
+                <a href="{{ route('app.dashboard') }}" class="btn btn-primary pull-left"><i class="fa fa-home"></i> Go
+                    Home</a>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn-info">Download Report</button>
+                    <button type="button" class="btn btn-info dropdown-toggle dropdown-icon"
+                        data-toggle="dropdown">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" href="{{route('app.end-day-report.export-excel')}}">Excel Format</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('app.end-day-report.export-pdf')}}">PDF Format</a>
+                    </div>
+
+                </div>
                 <button onclick="window.print();" class="btn btn-success pull-right"><i class="fa fa-save"></i>
                     Print</button>
             </div>

@@ -9,6 +9,7 @@ use NumberFormatter;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Classes\CustomReport;
+use App\Exports\EndDayReportExport;
 use Illuminate\Support\Facades\DB;
 use App\Exports\GeneralReportExport;
 use Illuminate\Support\Facades\Hash;
@@ -100,6 +101,23 @@ class DashboardController extends Controller
             ->whereRaw('Date(sales.created_at) = CURRENT_DATE')
             ->get();
         return view('reports.endDay', compact('sales'));
+    }
+
+    public function exportEndOfDayReportExcel()
+    {
+        return Excel::download(new EndDayReportExport, 'K7-Pharmacy-End-of-Day-Report-'.date('d-m-Y').'.xlsx');
+    }
+
+    public function exportEndOfDayReportPdf()
+    {
+        $sales = DB::table('sales')
+        ->select('sales.*', 'products.name as product', 'users.name as user')
+        ->join('products', 'products.id', '=', 'sales.product_id')
+        ->join('users', 'users.id', '=', 'sales.user_id')
+        ->whereRaw('Date(sales.created_at) = CURRENT_DATE')
+        ->get();
+        $pdf = PDF::loadView('reports.endDay_report_pdf', compact('sales'));
+        return $pdf->download('K7-Pharmacy-EndOfDayReport-'.date('d-m-Y').'.pdf');
     }
 
     public function customReportView()

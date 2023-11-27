@@ -63,6 +63,8 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('generalReport', [DashboardController::class, 'generalReport'])->name('general.report');
     Route::get('generalReportExcel', [DashboardController::class, 'exportGeneralReportExcel'])->name('general-report.export-excel');
     Route::get('generalReportPdf', [DashboardController::class, 'exportGeneralReportPDF'])->name('general-report.export-pdf');
+    Route::get('endDayReportExcel', [DashboardController::class, 'exportEndOfDayReportExcel'])->name('end-day-report.export-excel');
+    Route::get('endDayReportPdf', [DashboardController::class, 'exportEndOfDayReportPdf'])->name('end-day-report.export-pdf');
     Route::get('changePassword', [DashboardController::class, 'showChangePasswordGet'])->name('changePasswordGet');
     Route::post('changePassword', [DashboardController::class, 'changePasswordPost'])->name('changePasswordPost');
     // Route::get('endOfDayReport', [DashboardController::class, 'endOfDayView'])->name('endofDay.view');
