@@ -3,7 +3,7 @@
       <!-- Brand Logo -->
       <a href="{{ route('app.dashboard') }}" class="brand-link">
           <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
-              alt="Store Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+              alt="Store Logo" class="brand-image  elevation-3" style="opacity: .8">
           <span
               class="brand-text font-weight-light">{{ app(App\Settings\StoreSettings::class)->store_name ?: 'Storeify' }}</span>
       </a>

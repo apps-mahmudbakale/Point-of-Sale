@@ -35,8 +35,7 @@ class UserController extends Controller
     {
         $this->authorize('create-users');
         $roles = Role::get();
-        $stations = Station::get();
-        return view('users.create', compact('roles', 'stations'));
+        return view('users.create', compact('roles'));
     }
 
     /**

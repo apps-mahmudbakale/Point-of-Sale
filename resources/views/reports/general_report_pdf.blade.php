@@ -34,8 +34,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 align="center">
-                    <img src="{{ !empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/store/' . app(App\Settings\StoreSettings::class)->store_logo) : asset('assets/img/logo.png') }}"
-                        alt="Store Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <img src="{{!empty(app(App\Settings\StoreSettings::class)->store_logo) ? asset('storage/store/'.app(App\Settings\StoreSettings::class)->store_logo):asset('logo.png')}}" alt="" width="143px" height="143px" class="img img-rounded">
                     <br>
                     {{ app(App\Settings\StoreSettings::class)->store_name }}
                 </h1>
