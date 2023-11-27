@@ -70,8 +70,11 @@
                                                 <button id="plus{{ $cart->id }}" class='btn btn-info btn-sm'><i
                                                         class='fa fa-plus-circle'></i></button>
                                                 <button id="minus{{ $cart->id }}"
-                                                    class='btn btn-danger btn-sm delete'><i
+                                                    class='btn btn-warning text-white btn-sm delete'><i
                                                         class='fa fa-minus-circle'></i></button>
+                                                        <button id="minus{{ $cart->id }}"
+                                                            class='btn btn-danger btn-sm delete'><i
+                                                                class='fa fa-times-circle'></i></button>
                                             </div>
                                         </td>
                                     </tr>

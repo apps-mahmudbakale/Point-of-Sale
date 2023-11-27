@@ -41,11 +41,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Buying Price</label>
-                                <input type="number" name="buying_price" value="{{old('name', isset($product) ? $product->buying_price : '')}}" class="form-control" placeholder="Buying Price">
+                                <input type="number" name="buying_price" id="buying" value="{{old('name', isset($product) ? $product->buying_price : '')}}" class="form-control" placeholder="Buying Price">
                             </div>
                             <div class="form-group">
                                 <label>Selling Price</label>
-                                <input type="number" name="selling_price" value="{{old('name', isset($product) ? $product->selling_price : '')}}" class="form-control" placeholder="Selling Price">
+                                <input type="number" name="selling_price" id="selling" readonly value="{{old('name', isset($product) ? $product->selling_price : '')}}" class="form-control" placeholder="Selling Price">
                             </div>
                             <div class="form-group">
                                 <label>Quantity in Stock</label>
@@ -55,11 +55,11 @@
                                 <label>Expiry Date</label>
                                 <input type="date" name="expiry_date" value="{{old('name', isset($product) ? $product->expiry_date : '')}}" class="form-control" placeholder="Expiry Date">
                             </div>
-                            
+
                             {{-- <div class="form-group">
                                 <label>Store</label>
                                 <select name="store_id" class="form-control">
-                                    <option selected value="{{$product->store->id}}">{{$product->store->name}}</option>  
+                                    <option selected value="{{$product->store->id}}">{{$product->store->name}}</option>
                                     @foreach($stores as $store)
                                             <option value="{{$store->id}}">{{$store->name}}</option>
                                     @endforeach
@@ -77,6 +77,16 @@
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
+        <script>
+            var buying = document.getElementById('buying');
+            var selling = document.getElementById('selling');
+
+            buying.addEventListener('keyup', ()=>{
+                // alert(buying.value);
+                selling.value = buying.value * {{ app(App\Settings\StoreSettings::class)->sell_margin}}
+            });
+
+        </script>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

@@ -147,6 +147,13 @@ class SaleController extends Controller
         return redirect()->route('app.sales.create');
     }
 
+    public function removeProduct($product)
+    {
+        DB::table('sales_order')->where('invoice', $invoice)->delete();
+        session()->forget('invoice');
+        return redirect()->route('app.sales.create');
+    }
+
     public function printInvoice($invoice)
     {
         $items = DB::table('sales')

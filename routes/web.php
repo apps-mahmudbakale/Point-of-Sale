@@ -59,6 +59,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('sales/save/{invoice}', [SaleController::class, 'saveSale']);
     Route::get('sales/print/{invoice}', [SaleController::class, 'saveSalePrint']);
     Route::get('sales/cancel/{invoice}', [SaleController::class, 'cancelSale']);
+    Route::get('sales/remove/{product}', [SaleController::class, 'removeProduct']);
     Route::get('sales-print/{invoice}', [SaleController::class, 'printInvoice'])->name('sales.print');
     Route::get('generalReport', [DashboardController::class, 'generalReport'])->name('general.report');
     Route::get('generalReportExcel', [DashboardController::class, 'exportGeneralReportExcel'])->name('general-report.export-excel');
