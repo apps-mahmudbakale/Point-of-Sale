@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Selling Price</label>
-                                <input type="number" name="selling_price" id="selling" readonly value="{{old('name', isset($product) ? $product->selling_price : '')}}" class="form-control" placeholder="Selling Price">
+                                <input type="number" name="selling_price" id="selling"  value="{{old('name', isset($product) ? $product->selling_price : '')}}" class="form-control" placeholder="Selling Price">
                             </div>
                             <div class="form-group">
                                 <label>Quantity in Stock</label>

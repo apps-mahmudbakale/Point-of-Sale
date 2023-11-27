@@ -81,7 +81,7 @@
                                 <td>{!! app(App\Settings\StoreSettings::class)->currency !!} {{ number_format($sale->amount) }}</td>
                                 <td>{{ $sale->user }}</td>
                                 {{-- <td>{{$sale->station}}</td> --}}
-                                <td>{{ \Carbon\Carbon::parse($sale->created_at)->diffForHumans() }}</td>
+                                <td>{{ \Carbon\Carbon::parse($sale->created_at)->toFormattedDayDateString() }}</td>
                             </tr>
                         @endforeach
                     </tbody>

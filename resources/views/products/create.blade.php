@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Selling Price</label>
-                                <input type="number" name="selling_price" id="selling" readonly class="form-control" placeholder="Selling Price">
+                                <input type="number" name="selling_price" id="selling"  class="form-control" placeholder="Selling Price">
                             </div>
                             <div class="form-group">
                                 <label>Quantity in Stock</label>
