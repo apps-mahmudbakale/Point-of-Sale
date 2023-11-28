@@ -48,21 +48,25 @@ class SaleController extends Controller
         $keyword = trim($request->search_keyword, "");
 
         $products = DB::table('products')
-            ->where('name', 'like', '%' . $keyword . '%')
+            ->where(DB::raw('lower(name)'), 'like', '%' . strtolower($keyword) . '%')
             ->where('qty', '>=', '1')
             ->get();
         // dd($products);
         echo '<ul class="nav flex-column">';
-        foreach ($products as $product) {
-            $url = base64_encode($product->id . ',' . session()->get('invoice') . ',' . $product->selling_price);
-            echo '<li class="nav-item">
+        if ($products) {
+            foreach ($products as $product) {
+                $url = base64_encode($product->id . ',' . session()->get('invoice') . ',' . $product->selling_price);
+                echo '<li class="nav-item">
                 <a href="' . route('app.sales.cart', $url) . '" class="nav-link">
                   <strong>' . $product->name . '</strong>
                   <span class="float-right badge bg-primary">&#8358; ' . number_format($product->selling_price, 2) . '</span>
                 </a>
               </li>';
+            }
+            echo '</ul>';
+        }else{
+            echo '<p>No products found</p>';
         }
-        echo '</ul>';
     }
 
     public function cart($invoice)
@@ -79,13 +83,13 @@ class SaleController extends Controller
                     'created_at' => DB::raw('now()'),
                     'updated_at' => DB::raw('now()'),
                 ]
-                );
-                DB::table('sales_order')
-                    ->where('product_id', $data[0])
-                    ->update([
-                        'quantity' => DB::raw('quantity + 1'),
-                        'amount' => DB::raw('amount + '.$data[2])
-                    ]);
+            );
+        DB::table('sales_order')
+            ->where('product_id', $data[0])
+            ->update([
+                'quantity' => DB::raw('quantity + 1'),
+                'amount' => DB::raw('amount + ' . $data[2])
+            ]);
 
         return redirect()->route('app.sales.create');
     }
