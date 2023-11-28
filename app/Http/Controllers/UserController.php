@@ -75,9 +75,8 @@ class UserController extends Controller
         $this->authorize('update-users');
 
         $roles = Role::get();
-        $stations = Station::get();
 
-        return view('users.edit', compact('user', 'stations', 'roles'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
