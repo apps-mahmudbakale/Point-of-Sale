@@ -23,7 +23,6 @@ Route::post('getPrice', [SaleController::class, 'getPrice']);
 Route::get('getSales/{station}', [SaleController::class, 'getSales']);
 Route::get('getProducts', [SaleController::class, 'getProducts']);
 Route::post('updateSale', [SaleController::class, 'update']);
-Route::post('stationProducts', [SaleController::class, 'stationProducts']);
 Route::get('requests', [SaleController::class, 'requests']);
 Route::post('syncProducts', [SaleController::class, 'syncProducts']);
 Route::post('syncRequest', [SaleController::class, 'syncRequest']);

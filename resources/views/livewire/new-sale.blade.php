@@ -72,9 +72,9 @@
                                                 <button id="minus{{ $cart->id }}"
                                                     class='btn btn-warning text-white btn-sm delete'><i
                                                         class='fa fa-minus-circle'></i></button>
-                                                <button id="minus{{ $cart->id }}"
+                                                <a href="remove/{{$cart->product_id}}"
                                                     class='btn btn-danger btn-sm delete'><i
-                                                        class='fa fa-times-circle'></i></button>
+                                                        class='fa fa-times-circle'></i></a>
                                             </div>
                                         </td>
                                     </tr>

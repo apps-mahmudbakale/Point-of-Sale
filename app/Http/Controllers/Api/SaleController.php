@@ -84,6 +84,14 @@ class SaleController extends Controller
         return response()->json($products);
     }
 
+public function removeProduct(Request $request)
+{
+    DB::table('sales_order')
+            ->where('product_id', $request->prid)
+            ->where('invoice', $request->invoice)
+            ->delete();
+}
+
     /**
      * Store a newly created resource in storage.
      *
@@ -117,9 +125,9 @@ class SaleController extends Controller
     }
 
 
- 
 
- 
+
+
 
 
 

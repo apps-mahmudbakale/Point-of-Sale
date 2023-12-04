@@ -55,6 +55,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::resource('sales', SaleController::class);
     Route::post('sales/search', [SaleController::class, 'searchItem'])->name('sales.search');
     Route::get('sales/cart/{invoice}', [SaleController::class, 'cart'])->name('sales.cart');
+    Route::get('sales/remove/{product}', [SaleController::class, 'removeProduct'])->name('sales.remove');
     Route::resource('returns', ReturnSaleController::class);
     Route::post('returns/approve', [ReturnSaleController::class, 'approve'])->name('returns.approve');
     Route::get('sales/save/{invoice}', [SaleController::class, 'saveSale']);
@@ -80,5 +81,5 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::post('logout', [LogoutController::class, 'perform'])->name('logout');
 });
 // if (env('APP_ENV') === 'production') {
-    URL::forceScheme('https');
+    // URL::forceScheme('https');
 // }

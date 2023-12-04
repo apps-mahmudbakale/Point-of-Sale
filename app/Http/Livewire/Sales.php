@@ -19,7 +19,7 @@ class Sales extends Base
                     ->join('users', 'users.id', '=', 'sales.user_id')
                     ->where('products.name', 'like', '%' . $this->search . '%')
                     ->paginate(10);
-    
+
                 return view(
                     'livewire.sales',
                     ['sales' => $sales]
@@ -53,7 +53,7 @@ class Sales extends Base
                     ->select('sales.*','products.name as product','users.name as user')
                     ->join('products', 'products.id', '=', 'sales.product_id')
                     ->join('users', 'users.id', '=', 'sales.user_id')
-                    ->where('sales.station_id', auth()->user()->station->id)
+                    ->where('sales.user_id', auth()->user()->id)
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate($this->perPage);
                 return view(

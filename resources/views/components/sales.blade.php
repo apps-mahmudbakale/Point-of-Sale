@@ -52,6 +52,7 @@
                                             <td>{{$sale->user}}</td>
                                             <td>{{\Carbon\Carbon::parse($sale->created_at)->diffForHumans()}}</td>
                                             <td>
+                                                @can('delete-sales')
                                                 <div class="btn-group">
                                                         <button class="btn btn-danger btn-sm" id="del{{ $sale->id }}"
                                                             data-value="{{ $sale->id }}"><i class="fa fa-trash"></i></button>
@@ -85,6 +86,7 @@
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         </form>
                                                 </div>
+                                                @endcan
                                             </td>
                                         </tr>
                                             @endforeach

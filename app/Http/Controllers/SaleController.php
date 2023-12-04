@@ -93,6 +93,7 @@ class SaleController extends Controller
 
         return redirect()->route('app.sales.create');
     }
+
     public function saveSale($invoice)
     {
         $sales_order = DB::table('sales_order')
@@ -153,8 +154,7 @@ class SaleController extends Controller
 
     public function removeProduct($product)
     {
-        DB::table('sales_order')->where('invoice', $invoice)->delete();
-        session()->forget('invoice');
+        DB::table('sales_order')->where('product_id', $product)->delete();
         return redirect()->route('app.sales.create');
     }
 
