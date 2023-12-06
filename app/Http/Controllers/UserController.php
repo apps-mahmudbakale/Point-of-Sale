@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->authorize('read-users');
+        // $this->authorize('read-users');
         return view('users.index');
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-users');
+        // $this->authorize('create-users');
         $roles = Role::get();
         return view('users.create', compact('roles'));
     }

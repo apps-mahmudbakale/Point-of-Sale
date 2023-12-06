@@ -21,7 +21,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $this->authorize('read-roles');
+        // $this->authorize('read-roles');
         $roles = Role::all();
 
         return view('roles.index', compact('roles'));
@@ -34,7 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-roles');
+        // $this->authorize('create-roles');
 
         $permissions = Permission::all();
         return view('roles.create', compact('permissions'));
@@ -48,7 +48,7 @@ class RoleController extends Controller
      */
     public function store(RoleFormRequest $request)
     {
-        $this->authorize('create-roles');
+        // $this->authorize('create-roles');
 
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
@@ -64,7 +64,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        $this->authorize('read-roles');
+        // $this->authorize('read-roles');
 
         $role->permissions()->get();
 
@@ -79,7 +79,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $this->authorize('update-roles');
+        // $this->authorize('update-roles');
         $permissions = Permission::all();
         return view('roles.edit', compact('role', 'permissions'));
     }
@@ -93,7 +93,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $this->authorize('update-roles');
+        // $this->authorize('update-roles');
 
         $role->update($request->all());
 

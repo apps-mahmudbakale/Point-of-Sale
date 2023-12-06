@@ -33,24 +33,20 @@ class RolesAndPermissionsSeeder extends Seeder
             'users',
             'roles',
             'reports',
-            'request',
-            'return',
-            'store',
             'sales',
-            'stations',
             'settings',
             'invoices',
             'products',
-            'sync'
-           
-           
+
+
+
         ];
 
         foreach ($permissions as $permission) {
             foreach ($entities as $entity) {
                  Permission::create(['name' => $permission.'-'.$entity ]);
             }
-           
+
         }
 
         foreach ($roles as $role) {
