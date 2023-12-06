@@ -26,7 +26,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          @role('admin | super-admin')
+          @role('admin|super-admin')
           <div class="col-lg-3 col-md-4 col-4">
             <!-- small box -->
             <div class="small-box bg-info">
