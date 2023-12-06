@@ -38,12 +38,14 @@
                                       <p>Users</p>
                                   </a>
                               </li>
+                              @can('read-roles')
                               <li class="nav-item">
                                   <a href="{{ route('app.roles.index') }}" class="nav-link">
                                       <i class="fa fa-universal-access nav-icon"></i>
                                       <p>Roles</p>
                                   </a>
                               </li>
+                              @endcan
                               {{-- <li class="nav-item">
                                   <a href="{{ route('app.stations.index') }}" class="nav-link">
                                       <i class="fa fa-building nav-icon"></i>
