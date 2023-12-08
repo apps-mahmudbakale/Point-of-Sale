@@ -56,38 +56,11 @@
         }
 
         @media print {
-            body {
-                font: Georgia, "Times New Roman", Times, serif;
-                background: #fff;
-                font-size: 11pt;
-            }
-        }
-
-
-        @media print {
 
             .hidden-print,
             .hidden-print * {
                 display: none !important;
             }
-        }
-
-        #scissors {
-            height: 43px;
-            /* image height */
-            width: 90%;
-            margin: auto auto;
-            background-image: url('{{ asset('cXciH.png') }}');
-            background-repeat: no-repeat;
-            background-position: right;
-            position: relative;
-        }
-
-        #scissors div {
-            position: relative;
-            top: 50%;
-            border-top: 3px dashed black;
-            margin-top: -3px;
         }
     </style>
 </head>

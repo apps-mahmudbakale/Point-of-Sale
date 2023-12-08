@@ -53,30 +53,28 @@ class ReturnSaleController extends Controller
                                 ->where('invoice', $request->invoice)
                                 ->where('product_id', $request->items[$index])
                                 ->first();
-                    if($sales->qty == 1){
+                    if($sales->quantity == 1){
                         DB::table('sales')
                                 ->where('invoice', $request->invoice)
                                 ->where('product_id', $request->items[$index])
                                 ->delete();
                         $data = DB::table('return_request')->where('product_id', $request->items[$index])->first();
-                        DB::table('station_products')
-                            ->where('product_id', $request->items[$index])
-                            ->where('station_id', $data->station_id)
-                            ->update(['quantity' => DB::raw('quantity + 1')]);
+                        DB::table('products')
+                            ->where('id', $request->items[$index])
+                            ->update(['qty' => DB::raw('qty + 1')]);
                     }else{
                     $product = DB::table('products')
                                 ->where('id', $request->items[$index])->first();
                     DB::table('sales')
                             ->where('invoice', $request->invoice)
                             ->where('product_id', $request->items[$index])
-                            ->update(['qty' => DB::raw('qty -'.$request->rqty[$index]), 'amount' => $product->selling_price * $request->rqty[$index]]);
+                            ->update(['quantity' => DB::raw('quantity -'.$request->rqty[$index]), 'amount' => round($product->selling_price * $request->rqty[$index])]);
                     $data = DB::table('return_request')->where('product_id', $request->items[$index])->first();
-                    DB::table('station_products')
-                        ->where('product_id', $request->items[$index])
-                        ->where('station_id', $data->station_id)
-                        ->update(['quantity' => DB::raw('quantity +'.$request->rqty[$index])]);
+                    DB::table('products')
+                        ->where('id', $request->items[$index])
+                        ->update(['qty' => DB::raw('qty +'.$request->rqty[$index])]);
                     }
-    
+
             }
             return redirect()->route('app.returns.index')->with('success', 'Return Request Sent');
         }else{
@@ -86,20 +84,19 @@ class ReturnSaleController extends Controller
                         'invoice' => $request->invoice,
                         'product_id' => $request->items[$index],
                         'return_qty' => $request->rqty[$index],
-                        'station_id' => auth()->user()->station->id,
                         'created_at' => now()
                     ]);
-    
+
             }
             return redirect()->route('app.returns.index')->with('success', 'Return Request Sent');
         }
 
 
-        
-        
+
+
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -120,7 +117,7 @@ class ReturnSaleController extends Controller
             ->get();
             return view('sales-return.show', compact('items', 'requests', 'done'));
         }else{
-            
+
             $done = DB::table('return_request')->where('invoice', $invoice)->first();
             if(!empty($done)){
                 $requests = DB::table('return_request')->where('invoice', $invoice)->pluck('product_id')->toArray();
@@ -139,9 +136,9 @@ class ReturnSaleController extends Controller
                 ->get();
                 return view('sales-return.show', compact('items'));
             }
-           
+
         }
-        
+
     }
 
     /**

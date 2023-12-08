@@ -40,7 +40,7 @@
                     <th>Return Qty</th>
                   </thead>
                   <tbody>
-                    
+
                     @foreach ($items as $item)
                     <input type="hidden" value="{{$item->invoice}}" name="invoice" id="">
                       <tr>
@@ -49,9 +49,9 @@
                         </td>
                         <td>{{$item->product}}</td>
                         <td>{!! app(App\Settings\StoreSettings::class)->currency !!} {{number_format($item->selling_price)}}</td>
-                        <td>{{$item->qty}}</td>
-                        <td><input type="number" value="{{$item->qty}}"  class="form-control" name="rqty[]" id=""></td>
-                      </tr>                   
+                        <td>{{$item->quantity}}</td>
+                        <td><input type="number" value="{{$item->quantity}}"  class="form-control" name="rqty[]" id=""></td>
+                      </tr>
                     @endforeach
                   </tbody>
                 </table>

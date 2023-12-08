@@ -40,7 +40,7 @@
                   <th>Status</th>
                   <th></th>
                 </thead>
-                <tbody> 
+                <tbody>
                   @foreach ($requests as $request)
                     <tr>
                       <td>{{$loop->iteration}}</td>
@@ -53,7 +53,7 @@
                         @endif
                       </td>
                       <td><a href="{{route('app.returns.show', $request->invoice)}}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>
-                    </tr>                          
+                    </tr>
                   @endforeach
                 </tbody>
               </table>
@@ -64,7 +64,7 @@
                       <th>Invoice</th>
                       <th>Status</th>
                     </thead>
-                    <tbody> 
+                    <tbody>
                       @foreach ($requests as $request)
                         <tr>
                           <td>{{$loop->iteration}}</td>
@@ -77,7 +77,7 @@
                             @endif
                           </td>
                           <td><a href="{{route('app.returns.show', $request->invoice)}}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>
-                        </tr>                          
+                        </tr>
                       @endforeach
                     </tbody>
                   </table>

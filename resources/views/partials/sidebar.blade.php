@@ -80,14 +80,14 @@
                                   </a>
                               </li>
                           @endcan
-                          {{-- @can('read-return')
+                          {{-- @can('read-return') --}}
                               <li class="nav-item">
                                   <a href="{{ route('app.returns.index') }}" class="nav-link">
                                       <i class="fa fa-ban nav-icon"></i>
                                       <p>Return Sale</p>
                                   </a>
                               </li>
-                          @endcan --}}
+                          {{-- @endcan --}}
                           <li class="nav-item">
                               <a href="{{ route('app.sales.index') }}" class="nav-link">
                                   <i class="fa fa-table nav-icon"></i>
