@@ -76,7 +76,7 @@ class SaleController extends Controller
         $qty = 1;
         $cart = DB::table('sales_order')
             ->updateOrInsert(
-                ['product_id' => $data[0], 'invoice' => $data[1]],
+                ['product_id' => $data[0], 'invoice' => $data[1], 'user_id' => auth()->user()->id],
                 [
                     // 'quantity' => DB::raw('quantity + ' . $qty),
                     // 'amount' => DB::raw('amount + ' . $data[2]),
@@ -86,6 +86,7 @@ class SaleController extends Controller
             );
         DB::table('sales_order')
             ->where('product_id', $data[0])
+            ->where('user_id', auth()->user()->id)
             ->update([
                 'quantity' => DB::raw('quantity + 1'),
                 'amount' => DB::raw('amount + ' . $data[2])
