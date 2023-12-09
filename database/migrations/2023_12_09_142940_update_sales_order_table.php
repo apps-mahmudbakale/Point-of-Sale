@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('sales_order', function($table) {
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
         });
     }
 
