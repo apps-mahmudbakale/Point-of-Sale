@@ -124,6 +124,7 @@ class SaleController extends Controller
     {
         $sales_order = DB::table('sales_order')
             ->where('invoice', $invoice)
+            ->where('user_id', auth()->user()->id)
             ->get();
         foreach ($sales_order as $order) {
             $sales = Sale::create([
@@ -141,7 +142,7 @@ class SaleController extends Controller
             'invoice' => $invoice,
             'created_at' => now(),
         ]);
-        DB::table('sales_order')->where('invoice', $invoice)->delete();
+        DB::table('sales_order')->where('invoice', $invoice)->where('user_id',auth()->user()->id)->delete();
         session()->forget('invoice');
         return redirect()->route('app.sales.print', $invoice);
     }
@@ -165,10 +166,12 @@ class SaleController extends Controller
             ->select('sales.*', 'products.name as product', 'products.selling_price')
             ->join('products', 'products.id', '=', 'sales.product_id')
             ->where('sales.invoice', $invoice)
+            ->where('sales.user_id', auth()->user()->id)
             ->get();
         $sum = DB::table('sales')
             ->select(DB::raw('SUM(amount) as sum'))
             ->where('invoice', $invoice)
+            ->where('user_id', auth()->user()->id)
             ->first();
         $user = DB::table('sales')
             ->select('users.name')
