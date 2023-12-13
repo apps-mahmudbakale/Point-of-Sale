@@ -86,6 +86,8 @@
                                                 var prid = $('#prid{{ $cart->id }}').val();
                                                 var a = ++qty;
                                                 var invoice = '{{ $cart->invoice }}';
+                                                var user = '{{auth()->user()->id}}';
+                                                console.log(user);
                                                 $('#qty{{ $cart->id }}').val(a);
 
                                                 $.ajax({
@@ -94,7 +96,8 @@
                                                     data: {
                                                         qty: qty,
                                                         invoice: invoice,
-                                                        prid: prid
+                                                        prid: prid,
+                                                        user: user
                                                     },
                                                     cache: false,
                                                     success: function(html) {
@@ -127,6 +130,7 @@
                                                 var prid = $('#prid{{ $cart->id }}').val();
                                                 var a = --qty;
                                                 var invoice = '{{ $cart->invoice }}';
+                                                var user = '{{auth()->user()->id}}';
                                                 $('#qty{{ $cart->id }}').val(a);
 
                                                 $.ajax({
@@ -135,7 +139,8 @@
                                                     data: {
                                                         qty: qty,
                                                         invoice: invoice,
-                                                        prid: prid
+                                                        prid: prid,
+                                                        user:user
                                                     },
                                                     cache: false,
                                                     success: function(html) {
@@ -153,14 +158,15 @@
                                                 var qty = $('#qty{{ $cart->id }}').val();
                                                 var prid = $('#prid{{ $cart->id }}').val();
                                                 var invoice = '{{ $cart->invoice }}';
-
+                                                var user = '{{auth()->user()->id}}';
                                                 $.ajax({
                                                     type: "POST",
                                                     url: "/api/getPrice",
                                                     data: {
                                                         qty: qty,
                                                         invoice: invoice,
-                                                        prid: prid
+                                                        prid: prid,
+                                                        user:user
                                                     },
                                                     cache: false,
                                                     success: function(html) {

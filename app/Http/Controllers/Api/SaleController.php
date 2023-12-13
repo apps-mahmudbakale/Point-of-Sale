@@ -20,7 +20,7 @@ class SaleController extends Controller
      */
     public function getPrice(Request $request)
     {
-        // dd($request->all());
+        // dd($request->user);
 
         $product = Product::find($request->prid);
         $items = DB::table('products')
@@ -32,6 +32,7 @@ class SaleController extends Controller
         $update = DB::table('sales_order')
             ->where('product_id', $request->prid)
             ->where('invoice', $request->invoice)
+            ->where('user_id', $request->user)
             ->update([
                 'quantity' => $request->qty,
                 'amount' => $amount,
@@ -39,10 +40,12 @@ class SaleController extends Controller
         $getAmount = DB::table('sales_order')
             ->where('product_id', $request->prid)
             ->where('invoice', $request->invoice)
+            ->where('user_id', $request->user)
             ->first();
         $getSum = DB::table('sales_order')
             ->selectRaw('sum(amount) as total')
             ->where('invoice', $request->invoice)
+            ->where('user_id', $request->user)
             ->first();
         $a = number_format($getAmount->amount, 2);
         $b = number_format($getSum->total, 2);
