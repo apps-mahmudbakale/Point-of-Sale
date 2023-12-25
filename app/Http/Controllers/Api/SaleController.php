@@ -27,7 +27,7 @@ class SaleController extends Controller
             ->where('id', $request->prid)
             ->first();
 
-        $amount = $request->price * $request->qty;
+        $amount = intval($request->price * $request->qty);
 
         $update = DB::table('sales_order')
             ->where('product_id', $request->prid)
@@ -36,7 +36,7 @@ class SaleController extends Controller
             ->update([
                 'quantity' => $request->qty,
                 'amount' => $amount,
-                'price' => $request->price
+                'price' => intval($request->price)
             ]);
         $getAmount = DB::table('sales_order')
             ->where('product_id', $request->prid)
