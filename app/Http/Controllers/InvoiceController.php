@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -55,7 +56,24 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-
+        $items = DB::table('sales')
+            ->select('sales.*', 'products.name as product', 'products.selling_price')
+            ->join('products', 'products.id', '=', 'sales.product_id')
+            ->where('sales.invoice', $invoice->invoice)
+            // ->where('sales.user_id', auth()->user()->id)
+            ->get();
+        $sum = DB::table('sales')
+            ->select(DB::raw('SUM(amount) as sum'))
+            ->where('invoice', $invoice->invoice)
+            // ->where('user_id', auth()->user()->id)
+            ->first();
+        $user = DB::table('sales')
+            ->select('users.name')
+            ->join('users', 'users.id', '=', 'sales.user_id')
+            ->where('sales.invoice', $invoice->invoice)
+            ->first();
+            // dd($items);
+        return view('invoices.show', compact('items', 'invoice', 'sum', 'user'));
     }
 
     /**

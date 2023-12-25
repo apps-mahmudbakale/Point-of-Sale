@@ -174,7 +174,7 @@ class SaleController extends Controller
             ->select('sales.*', 'products.name as product', 'products.selling_price')
             ->join('products', 'products.id', '=', 'sales.product_id')
             ->where('sales.invoice', $invoice)
-            // ->where('sales.user_id', auth()->user()->id)
+            ->where('sales.user_id', auth()->user()->id)
             ->get();
         $sum = DB::table('sales')
             ->select(DB::raw('SUM(amount) as sum'))
