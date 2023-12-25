@@ -59,7 +59,7 @@
                                         <input type='hidden' value='{{ $cart->product_id }}'
                                             id='prid{{ $cart->id }}'>
                                         <td id="item{{ $cart->id }}">{{ $cart->name }}</td>
-                                        <td>&#8358; <input type='number' id='price{{$cart->id}}' value='{{ number_format($cart->selling_price, 2) }}' style='width:110px; display:inherit;' class='form-control'></td>
+                                        <td>&#8358; {{ number_format($cart->selling_price, 2) }}</td>
                                         <td><input type='number' id="qty{{ $cart->id }}" style='width:69px;'
                                                 class='form-control' value='{{ $cart->quantity }}'></td>
                                         <td>&#8358; <span
@@ -84,7 +84,6 @@
                                             $('#plus{{ $cart->id }}').click(() => {
                                                 var qty = $('#qty{{ $cart->id }}').val();
                                                 var prid = $('#prid{{ $cart->id }}').val();
-                                                var price = $('#price{{ $cart->id }}').val();
                                                 var a = ++qty;
                                                 var invoice = '{{ $cart->invoice }}';
                                                 var user = '{{auth()->user()->id}}';
@@ -98,9 +97,7 @@
                                                         qty: qty,
                                                         invoice: invoice,
                                                         prid: prid,
-                                                        user: user,
-                                                        price: price
-
+                                                        user: user
                                                     },
                                                     cache: false,
                                                     success: function(html) {
@@ -131,7 +128,6 @@
                                             $('#minus{{ $cart->id }}').click(() => {
                                                 var qty = $('#qty{{ $cart->id }}').val();
                                                 var prid = $('#prid{{ $cart->id }}').val();
-                                                var price = $('#price{{$cart->id}}').val();
                                                 var a = --qty;
                                                 var invoice = '{{ $cart->invoice }}';
                                                 var user = '{{auth()->user()->id}}';
@@ -144,8 +140,7 @@
                                                         qty: qty,
                                                         invoice: invoice,
                                                         prid: prid,
-                                                        user:user,
-                                                        price:price
+                                                        user:user
                                                     },
                                                     cache: false,
                                                     success: function(html) {
@@ -159,41 +154,11 @@
                                                     }
                                                 });
                                             });
-                                            $('#price{{$cart->id}}').change(()=>{
-                                                var price = $('#price{{$cart->id}}').val();
-                                                var qty = $('#qty{{ $cart->id }}').val();
-                                                var prid = $('#prid{{ $cart->id }}').val();
-                                                var invoice = '{{ $cart->invoice }}';
-                                                var user = '{{auth()->user()->id}}';
-                                                // alert(price);
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "/api/getPrice",
-                                                    data: {
-                                                        qty: qty,
-                                                        invoice: invoice,
-                                                        prid: prid,
-                                                        user:user,
-                                                        price:price
-                                                    },
-                                                    cache: false,
-                                                    success: function(html) {
-                                                        console.log(html)
-                                                        var json = html;
-                                                        if (json) {
-                                                            $('#m{{ $cart->id }}').text(json.amount);
-                                                            $('#total').html(json.total);
-                                                            $('#text').html(json.text);
-                                                        }
-                                                    }
-                                                });
-                                            })
                                             $('#qty{{ $cart->id }}').change(() => {
                                                 var qty = $('#qty{{ $cart->id }}').val();
                                                 var prid = $('#prid{{ $cart->id }}').val();
                                                 var invoice = '{{ $cart->invoice }}';
                                                 var user = '{{auth()->user()->id}}';
-                                                var price = $('#price{{$cart->id}}').val();
                                                 $.ajax({
                                                     type: "POST",
                                                     url: "/api/getPrice",
@@ -201,8 +166,7 @@
                                                         qty: qty,
                                                         invoice: invoice,
                                                         prid: prid,
-                                                        user:user,
-                                                        price: price
+                                                        user:user
                                                     },
                                                     cache: false,
                                                     success: function(html) {

@@ -63,6 +63,7 @@
                             <th>Invoice</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
+                            <th>Sold Rate</th>
                             <th>Amount</th>
                             <th>Sold By</th>
                             <th>Date</th>
@@ -77,14 +78,13 @@
                         <td>{{$sale->invoice}}</td>
                         <td>{{$sale->product}}</td>
                         <td>{{$sale->quantity}}</td>
-                        <td>N {{number_format($sale->amount)}}</td>
+                        <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sale->price)}}</td>
+                        <td>{!! app(App\Settings\StoreSettings::class)->currency !!}  {{number_format($sale->amount)}}</td>
                         <td>{{$sale->user}}</td>
-                        {{-- <td>{{$sale->station}}</td> --}}
                         <td>{{\Carbon\Carbon::parse($sale->created_at)->toFormattedDayDateString()}}</td>
                         </tr>
                        @endforeach
                     </tbody>
-                </table>
             </div>
             <!-- /.col -->
         </div>

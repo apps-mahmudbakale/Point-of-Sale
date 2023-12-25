@@ -69,6 +69,7 @@ class SaleController extends Controller
         }
     }
 
+
     public function cart($invoice)
     {
         $data = explode(',', base64_decode($invoice));
@@ -76,7 +77,7 @@ class SaleController extends Controller
         $qty = 1;
         $cart = DB::table('sales_order')
             ->updateOrInsert(
-                ['product_id' => $data[0], 'invoice' => $data[1], 'user_id' => auth()->user()->id],
+                ['product_id' => $data[0], 'invoice' => $data[1], 'price' => $data[2], 'user_id' => auth()->user()->id],
                 [
                     // 'quantity' => DB::raw('quantity + ' . $qty),
                     // 'amount' => DB::raw('amount + ' . $data[2]),
@@ -95,28 +96,34 @@ class SaleController extends Controller
         return redirect()->route('app.sales.create');
     }
 
-    public function saveSale($invoice)
+    public function saveSale($sale)
     {
+
         $sales_order = DB::table('sales_order')
-            ->where('invoice', $invoice)
+            ->where('invoice', $sale)
             ->get();
+            // dd($sales_order);
         foreach ($sales_order as $order) {
             $sales = Sale::create([
-                'invoice' => $invoice,
+                'invoice' => $sale,
                 'product_id' => $order->product_id,
                 'quantity' => $order->quantity,
                 'amount' => $order->amount,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'price' => $order->price
             ]);
             $product = DB::table('products')
                 ->where('id',  $order->product_id)
                 ->update(['qty' => DB::raw('qty - ' . $order->quantity)]);
         }
         $invoice = Invoice::create([
-            'invoice' => $invoice,
+            'invoice' => $sale,
             'created_at' => now(),
         ]);
-        DB::table('sales_order')->where('invoice', $invoice)->delete();
+       $delete = DB::table('sales_order')
+        ->where('invoice', $sale)
+        ->where('user_id', auth()->user()->id)
+        ->delete();
         session()->forget('invoice');
         return redirect()->route('app.sales.create')->with('success', 'Sales Saved');
     }
@@ -132,7 +139,8 @@ class SaleController extends Controller
                 'product_id' => $order->product_id,
                 'quantity' => $order->quantity,
                 'amount' => $order->amount,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'price' => $order->price
             ]);
             $product = DB::table('products')
                 ->where('id',  $order->product_id)

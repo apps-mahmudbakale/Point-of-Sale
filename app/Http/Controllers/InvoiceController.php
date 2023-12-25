@@ -32,7 +32,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -43,7 +43,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
     }
 
@@ -55,7 +55,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-       
+
     }
 
     /**
@@ -66,7 +66,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        
+
     }
 
     /**
@@ -78,7 +78,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        
+
 
     }
 
@@ -90,7 +90,8 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        
+        $invoice->delete();
+        return back()->with('success', 'Invoice Deleted');
 
     }
 }

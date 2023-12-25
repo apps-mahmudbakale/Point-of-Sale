@@ -40,11 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Buying Price</label>
-                                <input type="number" name="buying_price" id="buying" class="form-control" placeholder="Buying Price">
+                                <input type="text" name="buying_price" id="buying" class="form-control" placeholder="Buying Price">
                             </div>
                             <div class="form-group">
                                 <label>Selling Price</label>
-                                <input type="number" name="selling_price" id="selling"  class="form-control" placeholder="Selling Price">
+                                <input type="text" name="selling_price" id="selling"  class="form-control" placeholder="Selling Price">
                             </div>
                             <div class="form-group">
                                 <label>Quantity in Stock</label>

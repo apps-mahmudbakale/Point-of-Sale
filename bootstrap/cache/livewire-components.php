@@ -1,5 +1,6 @@
 <?php return array (
   'base' => 'App\\Http\\Livewire\\Base',
+  'custom-sale' => 'App\\Http\\Livewire\\CustomSale',
   'invoice' => 'App\\Http\\Livewire\\Invoice',
   'new-sale' => 'App\\Http\\Livewire\\NewSale',
   'products' => 'App\\Http\\Livewire\\Products',

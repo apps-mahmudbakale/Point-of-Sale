@@ -129,16 +129,14 @@ class DashboardController extends Controller
     public function customReport(Request $request, CustomReport $report)
     {
         $reports = $report->filter($request);
-        $products = Product::get();
-        $users = User::where('name', '!=', 'Admin')->get();
         $words = $reports['words'];
         $sales = $reports['filter'];
         $sum = $reports['sum'];
-        return view('reports.custom', compact('products', 'users', 'sales', 'words', 'sum'));
+        return view('reports.custom', compact('sales', 'words', 'sum'));
     }
     public function customReportExcel($data)
     {
-        
+
     }
     public function showChangePasswordGet()
     {

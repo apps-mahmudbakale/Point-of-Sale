@@ -5,6 +5,7 @@
         <th>Invoice</th>
         <th>Product</th>
         <th>Quantity</th>
+        <th>Sold Rate</th>
         <th>Amount</th>
         <th>Sold By</th>
         <th>Date</th>
@@ -17,6 +18,7 @@
             <td>{{ $sale->invoice }}</td>
             <td>{{ $sale->product }}</td>
             <td>{{ $sale->quantity }}</td>
+            <td>{{ $sale->price }}</td>
             <td>{{ $sale->amount }}</td>
             <td>{{ $sale->user }}</td>
             <td>{{ \Carbon\Carbon::parse($sale->created_at)->toFormattedDayDateString() }}</td>
