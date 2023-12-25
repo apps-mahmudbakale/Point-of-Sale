@@ -186,6 +186,7 @@ class SaleController extends Controller
             ->join('users', 'users.id', '=', 'sales.user_id')
             ->where('sales.invoice', $invoice)
             ->first();
+            dd($items);
         return view('sales.print', compact('items', 'invoice', 'sum', 'user'));
     }
 
