@@ -46,7 +46,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductsFormRequest $request)
+    public function store(Request $request)
     {
         // dd(array_merge($request->except('expiry_date'), ['expiry_date' => date($request->expiry_date)]));
         $products = Product::create(array_merge($request->except('expiry_date'), ['expiry_date' => date($request->expiry_date)]));
